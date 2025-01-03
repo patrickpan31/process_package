@@ -9,20 +9,23 @@ from load_data.load_data_package import CSVLoader, ExcelLoader, ZipLoader, Data_
 import pandas as pd
 import os
 
-
-
 @pytest.fixture
-def create_test_csv():
-    # Create a sample DataFrame
+def sample_df():
+    #create sample data frame
     data = {
         'Name': ['Alice', 'Bob', 'Charlie'],
         'Age': [25, 30, 35],
         'City': ['New York', 'Los Angeles', 'Chicago']
     }
     df = pd.DataFrame(data)
+    return df
+
+@pytest.fixture
+def create_test_csv(sample_df):
+
     # Save as CSV
     csv_file_path = 'test_file.csv'
-    df.to_csv(csv_file_path, index=False)
+    sample_df.to_csv(csv_file_path, index=False)
     print(f"Test CSV file created: {csv_file_path}")
 
     # Yield the file path to the test and clean up afterward
@@ -34,18 +37,12 @@ def create_test_csv():
     print(f"Test CSV file removed: {csv_file_path}")
 
 @pytest.fixture
-def create_test_excel():
+def create_test_excel(sample_df):
 
-    # Create a sample DataFrame
-    data = {
-        'Name': ['Alice', 'Bob', 'Charlie'],
-        'Age': [25, 30, 35],
-        'City': ['New York', 'Los Angeles', 'Chicago']
-    }
-    df = pd.DataFrame(data)
+
     # Save as CSV
     excel_file_path = 'test_file.xlsx'
-    df.to_excel(excel_file_path, index=False, sheet_name='Sheet1')
+    sample_df.to_excel(excel_file_path, index=False, sheet_name='Sheet1')
 
     print(f"Test EXCEL file created: {excel_file_path}")
 
