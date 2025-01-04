@@ -42,7 +42,7 @@ def test_datainspector(sample_df):
 
     :return: Analysis results based on strategy
     '''
-    data_inspector = DataInspector(SummaryStatisticStrategy())
+    data_inspector = DataInspector(DataTypeStrategy())
     data_inspector.analyze(sample_df)
     columns_dict = data_inspector.get_columns(sample_df)
     assert isinstance(columns_dict, dict)
