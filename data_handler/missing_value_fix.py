@@ -111,6 +111,14 @@ class Fill_Strategy(MissingValueFixBase):
                     # for col in new_df.select_dtypes(include = 'number').columns:
                     #     new_df[col] = new_df[col].fillna(new_df[col].mean())
 
+            if self.method == 'median':
+                if feature:
+                    new_df[feature] = new_df[feature].fillna(new_df[feature].median())
+
+                else:
+                    columns = new_df.select_dtypes(include = 'number').columns.to_list()
+                    new_df[columns] = new_df[columns].fillna(new_df[columns].median())
+
             if self.method == 'mode':
                 if feature:
                     new_df[feature] = new_df[feature].fillna(new_df[feature].mode())

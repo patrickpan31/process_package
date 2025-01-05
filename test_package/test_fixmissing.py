@@ -14,9 +14,9 @@ def sample_df():
 @pytest.fixture
 def sample_df_small():
     data = {
-        'A': [1, np.nan, np.nan],
-        'B': [4, np.nan, 6],
-        'C': [7, 8, np.nan]
+        'A': [1, np.nan, np.nan,4],
+        'B': [4, np.nan, 6, 8],
+        'C': [7, 10, np.nan, 11]
     }
     df = pd.DataFrame(data)
     return df
@@ -69,6 +69,10 @@ def testing_missinghandler(sample_df_small):
     print(new_df)
     handler.set_strategy(Fill_Strategy())
     handler.set_method('constant')
+    handler.set_value(3)
+    new_df = handler.process(sample_df_small)
+    print(new_df)
+    handler.set_method('median')
     handler.set_value(3)
     new_df = handler.process(sample_df_small)
     print(new_df)
