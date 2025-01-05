@@ -102,27 +102,35 @@ class Fill_Strategy(MissingValueFixBase):
         try:
             if self.method == 'mean':
                 if feature:
-                    for col in feature:
-                        new_df[col] = new_df[col].fillna(new_df[col].mean())
+                    new_df[feature] = new_df[feature].fillna(new_df[feature].mean())
+                    # for col in feature:
+                    #     new_df[col] = new_df[col].fillna(new_df[col].mean())
                 else:
-                    for col in new_df.select_dtypes(include = 'number').columns:
-                        new_df[col] = new_df[col].fillna(new_df[col].mean())
+                    columns = new_df.select_dtypes(include = 'number').columns.to_list()
+                    new_df[columns] = new_df[columns].fillna(new_df[columns].mean())
+                    # for col in new_df.select_dtypes(include = 'number').columns:
+                    #     new_df[col] = new_df[col].fillna(new_df[col].mean())
 
             if self.method == 'mode':
                 if feature:
-                    for col in feature:
-                        new_df[col] = new_df[col].fillna(new_df[col].mode())
+                    new_df[feature] = new_df[feature].fillna(new_df[feature].mode())
+                    # for col in feature:
+                    #     new_df[col] = new_df[col].fillna(new_df[col].mode())
                 else:
-                    for col in new_df.columns:
-                        new_df[col] = new_df[col].fillna(new_df[col].mode())
+                    columns = new_df.columns
+                    new_df[columns] = new_df[columns].fillna(new_df[columns].mode())
+                        # new_df[col] = new_df[col].fillna(new_df[col].mode())
 
             if self.method == 'constant':
                 if feature:
-                    for col in feature:
-                        new_df[col] = new_df[col].fillna(self.value)
+                    new_df[feature] = new_df[feature].fillna(self.value)
+                    # for col in feature:
+                    #     new_df[col] = new_df[col].fillna(self.value)
                 else:
-                    for col in new_df.columns:
-                        new_df[col] = new_df[col].fillna(self.value)
+                    columns = new_df.columns
+                    new_df[columns] = new_df[columns].fillna(self.value)
+                    # for col in new_df.columns:
+                    #     new_df[col] = new_df[col].fillna(self.value)
 
             print("Filling finished, if want to change different method, please call .set_method(), /n"
                   "selections are: 'mean', 'mode', 'constant'/n"
