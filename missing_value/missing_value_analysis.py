@@ -49,7 +49,7 @@ class SimpleMissingAnalyzer(MissValueAnalysis):
         '''
         print("Missing data summary based on Columns: ")
         missing_values = df.isnull().sum()
-        print(missing_values[missing_values>0])
+        print(missing_values[missing_values>0].sort_values(ascending = False))
 
     def visulize_missing_value(self, df: pd.DataFrame):
         '''

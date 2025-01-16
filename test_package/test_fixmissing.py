@@ -34,11 +34,12 @@ def test_drop_missing(sample_df_small):
     :return: None
     '''
     handler = Drop_Strategy()
-    new_df = handler.handle(sample_df_small)
-    diff = sample_df_small.dropna(axis=0)
+    new_df = handler.handle(sample_df_small, 'B')
+    diff = sample_df_small.dropna(subset = 'B', axis=0)
     print(sample_df_small)
     assert diff.equals(new_df)
     print(new_df)
+    print(diff)
 
 def test_fillstrategy(sample_df_small):
     '''

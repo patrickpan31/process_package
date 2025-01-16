@@ -101,7 +101,7 @@ class Uni_Variate_Analyzer():
         try:
             self._strategy.analyze(df, feature)
         except Exception as e:
-            raise ValueError("Can analyze the data, check if check to the correct strategy: /n"
+            raise ValueError("Can't analyze the data, check if check to the correct strategy: /n"
                              "NumericUniAnalysis() or CategoricalUniAnalysis() /n"
                              "you can reset the strategy using .set_strategy() /n")
 

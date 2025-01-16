@@ -16,6 +16,7 @@ def test_data_type_strategy(sample_df):
     :return:
     '''
     datatype_analyzer = DataTypeStrategy()
+    datatype_analyzer.inspect_data(sample_df)
     numeric_columns = datatype_analyzer.get_numeric_columns(sample_df)
     categorical_columns = datatype_analyzer.get_categorical_columns(sample_df)
     assert numeric_columns

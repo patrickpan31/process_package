@@ -45,7 +45,10 @@ class Drop_Strategy(MissingValueFixBase):
         try:
             new_df = df.copy()
             if feature is not None:
-                new_df.dropna(subset = feature, axis = self.axis, thresh = self.threshold, inplace = True)
+                if self.threshold:
+                    new_df.dropna(subset = feature, axis = self.axis, thresh = self.threshold, inplace = True)
+                else:
+                    new_df.dropna(subset=feature, axis=self.axis, inplace=True)
             else:
                 if not self.threshold:
                     new_df.dropna(axis=self.axis, inplace=True)

@@ -114,7 +114,7 @@ def test_ZIPLoader(create_test_zip):
 
     :return: True | False
     '''
-    zip_loader = Data_Loader_Handler(ZipLoader('sss'))
+    zip_loader = Data_Loader_Handler(ZipLoader())
     df = zip_loader.load_data(create_test_zip)
 
     assert len(df) > 0
